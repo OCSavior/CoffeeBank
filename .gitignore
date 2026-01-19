@@ -1,0 +1,20 @@
+# Compiled Java classes
+target/
+*.class
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+out/
+
+# Log files
+*.log
+
+# H2 Database files (if you switched to file-based)
+data/
+*.mv.db
+*.trace.db
+
+# OS generated files
+.DS_Store
+Thumbs.db
