@@ -36,4 +36,8 @@ public class Customer {
     public String getFirstName() {
         return firstName;
     }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
 }

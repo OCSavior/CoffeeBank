@@ -10,7 +10,7 @@ public class Account {
     private final UUID id;
     private AccountType type;
     private BigDecimal balance;
-    private List<Transaction> history;
+    private List<LedgerEntry> history;
 
     public Account(AccountType type) {
         this.id = UUID.randomUUID();
@@ -31,6 +31,6 @@ public class Account {
         BigDecimal newBalance = this.balance.subtract(amount);
         this.balance = newBalance.setScale(2, RoundingMode.HALF_UP);
     }
-    public List<Transaction> getHistory() { return history; }
-    public void addTransaction(Transaction transaction) { this.history.add(transaction); }
+    public List<LedgerEntry> getHistory() { return history; }
+    public void addLedgerEntry(LedgerEntry entry) { this.history.add(entry); }
 }

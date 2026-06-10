@@ -1,6 +1,7 @@
 package org.coffeebank;
 
 import org.coffeebank.models.Account;
+import org.coffeebank.models.AccountSummary;
 import org.coffeebank.models.AccountType;
 import org.coffeebank.models.Customer;
 import org.coffeebank.service.BankingService;
@@ -71,13 +72,23 @@ public class Main {
                 switch (choice) {
                     case "1":
                         // View Balances - [{Account: Value [History]]
-                        System.out.println("Displaying balances feature coming up...");
+                        for (AccountSummary summary : bank.getAccountDetails(currentCustomer)) {
+                            System.out.println("\n[" + summary.accountType() + "] Balance: $" + summary.balance());
+                            System.out.println("  Transaction History:");
+                            if (summary.history().isEmpty()) {
+                                System.out.println("    No transactions yet.");
+                            } else {
+                                for (var tx : summary.history()) {
+                                    System.out.println("    - " + tx.direction() + " $" + tx.amount() + " on " + tx.timestamp().toLocalDate());
+                                }
+                            }
+                        }
                         break;
                     case "2":
-                        // TODO: Implement interactive deposit
+                        bank.initiateDeposit(currentCustomer, scanner);
                         break;
                     case "3":
-                        // TODO: Implement interactive transfer
+                        bank.initiateTransfer(currentCustomer, scanner);
                         break;
                     case "4":
                         System.out.println("🔒 Logged out successfully.");
